@@ -1,0 +1,78 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Lista de valores (value list)
+ *
+ *   Cor de fundo (background color)   = #99d9ea  
+ *   Cor dos títulos (header color)    = #008000  
+ *   Cor do texto (text color)         = #e6e6e6 
+ *   Cor de madeira (wood color)(icon) = #ecd7a0
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/* TODO
+ *
+ * Daltónicos
+ * Possivelmente, investigar outra cor para o texto 
+ * Porque não estãio alinhados?
+ *
+ * */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Global
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+body {
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;
+    background-color: #99d9ea;
+    margin: 20px;
+    width: 640px;
+    color: #008000;
+}
+
+h1 {
+    font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px;
+    padding: 16px;
+}
+
+#banner {
+    background-color: #99d9ea;
+}
+
+/*
+.menu {
+    align: center;
+}
+*/
+
+.menuItem {
+    /*font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;*/
+    display: block;
+    border: solid 2px #e6e6e6;
+    border-radius: 16px;
+    margin: 20px;
+    width: 100%;
+}
+
+.menuItem td h2 {
+    font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
+    /*display: inline-block;*/
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px;
+    /*padding: 16px;*/
+}
+
+.menuItem td p{
+    /*display: inline-block;*/
+    margin: 8px;
+    /*color: #e6e6e6;*/
+    font-size: 16px;
+}
+
+.menuItem th img {
+    margin: 8px;
+    /*display: inline-block;*/
+    width: 64px;
+    height: 64px;
+}
