@@ -10,9 +10,9 @@
 /* TODO
  *
  * Daltónicos
- * Possivelmente, investigar outra cor para o texto 
- * Porque não estãio alinhados?
- *
+ * Mudar esquema de cores para fundo branco; cabeçalho e navegação podem continuar azuis
+ * Padding/margin dos <p>
+ * Terminar a página do tutorial
  * */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -21,22 +21,55 @@
 
 body {
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;
-    background-color: #99d9ea;
+    background-color: white;
     margin: 20px;
     width: 640px;
+}
+
+.danger {
+    background-color: pink;
+    color: darkred;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Textos
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+p {
+    color: black;
+    margin: 8px;
+    padding: 16px;
+    text-align: justify;
+}
+
+h1, h2, h3 {
+    font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
     color: #008000;
 }
 
 h1 {
-    font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
     font-size: 32px;
     font-weight: bold;
     margin: 8px;
     padding: 16px;
 }
 
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 8px;
+    padding: 16px;
+}
+
+/* Cabeçalho do site (letras grandes, Eng.Nabao) */
 #banner {
     background-color: #99d9ea;
+    color: #008000;
+}
+
+/* Exemplos de código */
+pre, code {
+    background-color: lightgray;
+    color: black;
 }
 
 /*
@@ -45,8 +78,20 @@ h1 {
 }
 */
 
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Menu e ligações de navegação
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+a.menuItem {
+    /* Retirar sublinhado e cor dos links */
+    text-decoration: none;
+    color: inherit;
+}
+
 .menuItem {
     /*font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;*/
+    background-color: #99d9ea;
     display: block;
     border: solid 2px #e6e6e6;
     border-radius: 16px;
@@ -57,17 +102,19 @@ h1 {
 .menuItem td h2 {
     font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
     /*display: inline-block;*/
-    font-size: 32px;
+    font-size: 32pt;
     font-weight: bold;
     margin: 8px;
+    color: #008000;
     /*padding: 16px;*/
 }
 
-.menuItem td p{
+.menuItem td p {
     /*display: inline-block;*/
     margin: 8px;
     /*color: #e6e6e6;*/
-    font-size: 16px;
+    font-size: 16pt;
+    color: #008000;
 }
 
 .menuItem th img {
