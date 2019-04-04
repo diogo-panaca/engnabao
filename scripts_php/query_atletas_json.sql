@@ -10,7 +10,5 @@ FROM
     INNER JOIN competicoes ON louvores.id_competicao = competicoes.id_competicao
 WHERE
     atletas.nome_atleta = ? AND
-    louvores.designacao = ? AND
-    competicoes.nome_competicao = ? AND
-    competicoes.ano_competicao = ?
+    (competicoes.ano_competicao between ? and ?)
 

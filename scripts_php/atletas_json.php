@@ -1,5 +1,7 @@
 <?php
 
+include 'prepend.php';
+
 # Fç auxiliar para garantir strings seguras
 function parseInput($dbconn, $dados) {
     $dados = trim($dados);
@@ -14,7 +16,7 @@ function imporCondicao($dbconn, $dados, $condicao, $dbstmt = FALSE, $dbresult = 
     if(!$condicao){
         $dados['erro'] = mysqli_error($dbconn);
         if($dbstmt){
-            $dados['erro_stmt'] = mysqli_error($dbstmt);
+            $dados['erro_stmt'] = mysqli_stmt_error($dbstmt);
             mysqli_stmt_close($dbstmt);
         }
         if($dbresult) {
@@ -36,26 +38,28 @@ $dados_retorno['sucesso'] = FALSE;
 # Todos os campos são obrigatórios
 # Se houver algum em falta, retorna-se erro e termina execução
 
-if(!array_key_exists('atleta', $_GET)
-    || !array_key_exists('competicao', $_GET)
-    || !array_key_exists('ano', $_GET)
-    || !array_key_exists('louvor', $_GET)
+$dados_recebidos = json_decode($_POST['strJson'], TRUE);
+
+if(!array_key_exists('atleta', $dados_recebidos)
+    # || !array_key_exists('competicao', $dados_recebidos)
+    # || !array_key_exists('louvor', $dados_recebidos)
+    || !array_key_exists('ano_min', $dados_recebidos)
+    || !array_key_exists('ano_max', $dados_recebidos)
 )
 {
-    $dados_retorno['erro'] = 'Argumentos GET insuficientes. Devem ser os seguintes (atleta,competicao,ano,louvor)';
+    $dados_retorno['erro'] = 'Argumentos insuficientes. Devem ser os seguintes {atleta,ano_min,ano_max}.';
     die(json_encode($dados_retorno));
 }
 
-$filtro_atleta = parseInput($_GET['atleta']);
-$filtro_competicao = parseInput($_GET['competicao']);
-$filtro_louvor = parseInput($_GET['louvor']);
-
-if(!is_numeric($_GET['ano'])) {
-    $dados_retorno['erro'] = 'Argumento (ano) GET deve ser numérico ';
+if(!is_numeric($dados_recebidos['ano_min'])) {
+    $dados_retorno['erro'] = 'Argumento (ano_min) deve ser numérico.';
     die(json_encode($dados_retorno));
 }
-$filtro_ano = (int) $_GET['ano'];
 
+if(!is_numeric($dados_recebidos['ano_max'])) {
+    $dados_retorno['erro'] = 'Argumento (ano_max) deve ser numérico.';
+    die(json_encode($dados_retorno));
+}
 
 # Ligar à BD
 
@@ -66,16 +70,35 @@ if(!$dbconn) {
 }
 
 $aux = mysqli_select_db($dbconn, 'id9004398_test');
-imporCondicao($dbconn, $dados_retorno, $aux);
+imporCondicao($dbconn, $dados_retorno, $aux !== FALSE);
+
+# Verificar integridade dos argumentos recebidos do cliente
+
+$filtro_atleta = parseInput($dbconn, $dados_recebidos['atleta']);
+# $filtro_competicao = parseInput($dbconn, $dados_recebidos['competicao']);
+# $filtro_louvor = parseInput($dbconn, $dados_recebidos['louvor']);
+$filtro_ano_min = (int) $dados_recebidos['ano_min'];
+$filtro_ano_max = (int) $dados_recebidos['ano_max'];
+
 
 # Criar query parametrizada
+$path = DIR_SCRIPTS_PHP . 'query_atletas_json.sql';
+$sqlstr = file_get_contents($path);
+# 
+# FIXME: Nao se pode usar a fç auxiliar porque 
+#        perde-se o erro "file not found (atletas_json.sql)"
+# importCondicao($dbconn, $dados_retorno, $sqlstr !== FALSE);
+if($sqlstr === FALSE) {
+    $dados_retorno['erro'] = "Ficheiro SQL nao foi encontrado!";
+    mysqli_close($dbconn);
+    die(json_encode($dados_retorno));
+}
 
-$sqlstr = file_get_contents('query_atletas_json.sql');
 $dbstmt = mysqli_prepare($dbconn, $sqlstr);
 imporCondicao($dbconn, $dados_retorno, $dbstmt !== FALSE);
 
-$aux = mysqli_stmt_bind_params($dbstmt, 'sssi', 
-    $filtro_atleta, $filtro_louvor, $filtro_competicao, $filtro_ano);
+$aux = mysqli_stmt_bind_param($dbstmt, 'sii', 
+    $filtro_atleta, $filtro_ano_min, $filtro_ano_max);
 imporCondicao($dbconn, $dados_retorno, $aux, $dbstmt);
 
 # Exectuar query

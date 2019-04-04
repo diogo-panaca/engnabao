@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+
+  <title>Eng.º Nabão - Demo Atletas</title>
+  <meta charset='UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='style.css'/> 
+  <link rel='icon' type='image/png' href='images/tinyicon.png'/>
+  <script src='demo_atletas.js'> </script>
+
+</head>
+
+<body>
+
+  <header id='banner'>
+    <a>
+      <img src='images/banner.png' alt='Eng.º Nabão'/>
+    </a>
+  </header>
+
+  <br/>
+
+  <h1> Atletas Olímpicos Portugueses </h1>
+  <p> Esta página demonstra a programação de uma aplicação web simples.
+  A interface presente nesta página permite ao utilizador consultar louvores
+  obtidos por três atletas portugueses em várias competições 
+  internacionais. </p>
+  
+  <p> A página contém um formulário em que se pode escolher os filtros a
+  utilizar. Esta é uma versão inicial em que é obrigatório escolher um
+  e apenas um atleta. Para este efeito, marca-se o botão de rádio 
+  correspondente.</p>
+
+  <p> A página foi desenvolvida com tecnologias HTML5 e faz chamadas AJAX,
+  em que envia dados relevantes em formato JSON para o servidor. Lá, os dados
+  tratados por um script PHP que consulta a base de dados, converte informação
+  obtida no formato JSON. Depois, devolve os dados ao cliente, que apresenta
+  numa tabela HTML, debaixo do formulário. </p>
+
+  <!--<p> O script PHP referido utiliza as funções mysqli. A query está
+    parametrizada com os filtros recebidos do cliente e retorna as colunas
+    apresentadas na página HTML. Para extrair os dados recebidos no formato
+    JSON, utiliza-se a função PHP para esse efeito, e para criar os dados
+    devolvidos ao cliente neste formato, a função inversa, também disponível
+    em PHP.</p>-->
+
+  <p> </p>
+
+  <form class='customForm' id='formFiltros' method='get' action='' onsubmit='naoSubmeter(event)'>
+    <div>
+      Atleta:
+
+      <div>
+        <label>
+          <input checked type='radio' name='atleta' id='in_nome_francis' value='Francis'/>
+          Francis
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type='radio' name='atleta' id='in_nome_nelson' value='Nélson'/>
+          Nélson
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type='radio' name='atleta' id='in_nome_telma' value='Telma'/>
+          Telma
+        </label>
+      </div>
+    </div>
+
+    <br/>
+
+    <div>
+      <label>
+        Ano: <br/> 
+        <input type='number' id='in_ano_min' name='ano_min' min='1896' max='2999' placeholder='1896'/>
+      </label>
+      <label>
+        até 
+        <input type='number' id='in_ano_max' name='ano_max' min='1896' max='2999' placeholder='2999'/>
+      </label>
+    </div>
+
+    <br/>
+
+    <button onclick='pedirApresentarDadosJson()'>OK</button>
+  </form>
+
+  <br/> 
+
+  <table id='resultados'>
+    <tr>
+      <th>Nome</th>
+      <th>Modalidade</th>
+      <th>Competição</th>
+      <th>Edição</th>
+      <th>Louvor</th>
+    </tr>
+  </table>
+
+</body>
+
+</html>
