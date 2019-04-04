@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS louvores (
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 INSERT INTO atletas (id_atleta, nome_atleta)
-VALUES (1, 'Francis'), (2, 'Telma'), (3, 'Nélson')
+VALUES (1, 'Francis'), (2, 'Nélson'), (3, 'Telma')
 ON DUPLICATE KEY UPDATE nome_atleta = VALUES(nome_atleta);
 
 INSERT INTO competicoes 
