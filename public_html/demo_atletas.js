@@ -10,7 +10,7 @@ function pedirApresentarDadosJson() {
         document.getElementById('formFiltros'));
 
     var objJson = {};
-    for(var dado in dadosForm) {
+    for(var dado of dadosForm) {
         // Percorrer lista de [name, value]
         //   dos elementos do formulário
         objJson[dado[0]] = dado[1];
@@ -34,20 +34,24 @@ function pedirApresentarDadosJson() {
             var objResposta = JSON.parse(this.responseText);
             // console.log(objResposta);
             if(!objResposta.sucesso) {
+
+				console.err(objResposta.erro);
+				if(objResposta.erro_stmt) {
+					console.err(objResposta.erro_stmt);
+				}
                 return;
             }
 
             // Obter tabela onde se vai apresentar dados
-            var tabResultados = document.getElementById('resultados');
+            var tabResultados = document.getElementById('reg-resultados');
 
             // Remover resultados anteriores
-            for(var node in document.query('.meta-ajax-response')) {
-                node.parentNode.removeChild(node);
-            }
+			// FIXME: Pode não ser a melhor solução
+			tabResultados.innerHTML = '';
 
-            for(var reg in objResposta.registos) {
+			// Preencher tabela
+            for(var reg of objResposta.registos) {
                 var node = document.createElement('tr');
-                node.class = 'meta-ajax-response';
                 node.innerHTML =
                     '<td>' + reg.atleta + '</td>' +
                     '<td>' + reg.modalidade + '</td>' +
