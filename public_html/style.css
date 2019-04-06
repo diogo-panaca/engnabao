@@ -1,17 +1,20 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Lista de valores (value list)
  *
- *   Cor de fundo (background color)   = #99d9ea  
  *   Cor dos títulos (header color)    = #008000  
  *   Cor do texto (text color)         = #e6e6e6 
  *   Cor de madeira (wood color)(icon) = #ecd7a0
+ *   Cor de fundo = lightblue          = #add8e6
+ *   
+ *   [ ANTIGOS ]
+ *   Cor de fundo (background color)   = #99d9ea
+ *   
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /* TODO
  *
  * Daltónicos
- * Mudar esquema de cores para fundo branco; cabeçalho e navegação podem continuar azuis
- * Padding/margin dos <p>
+ * Removr fundo do cabeçalho (passo a utilizar CSS para defini-la)
  * Terminar a página do tutorial
  * */
 
@@ -19,11 +22,13 @@
  * Global
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+@charset "utf-8";
+
 body {
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;
     background-color: white;
     margin: 20px;
-    width: 640px;
+    /* width: 640px; */
 }
 
 .danger {
@@ -36,9 +41,9 @@ body {
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 p {
     color: black;
-    margin: 8px;
-    padding: 16px;
+    margin 16px;
     text-align: justify;
+    font-size: 14pt;
 }
 
 h1, h2, h3 {
@@ -47,14 +52,14 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 40pt;
     font-weight: bold;
     margin: 8px;
     padding: 16px;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 32pt;
     font-weight: bold;
     margin: 8px;
     padding: 16px;
@@ -62,7 +67,8 @@ h2 {
 
 /* Cabeçalho do site (letras grandes, Eng.Nabao) */
 #banner {
-    background-color: #99d9ea;
+    background-color: lightblue
+    ;
     color: #008000;
 }
 
@@ -78,6 +84,40 @@ pre, code {
 }
 */
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Tabelas de dados
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 16px;
+    border: 1px solid black;
+}
+
+th {
+    background-color: lightblue;
+    color: #008000;
+    text-align: left;
+}
+
+tr {
+    padding: 10px 10px 10px 10px;
+    border: 1px solid black;
+}
+
+td, th {
+    padding: 10px 10px 10px 10px;
+    border: 1px solid black;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Formulários
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+form {
+    margin: 16px;
+}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Menu e ligações de navegação
@@ -91,7 +131,7 @@ a.menuItem {
 
 .menuItem {
     /*font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;*/
-    background-color: #99d9ea;
+    background-color: skyblue;
     display: block;
     border: solid 2px #e6e6e6;
     border-radius: 16px;
