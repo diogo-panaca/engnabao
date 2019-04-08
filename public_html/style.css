@@ -5,6 +5,7 @@
  *   Cor do texto (text color)         = #e6e6e6 
  *   Cor de madeira (wood color)(icon) = #ecd7a0
  *   Cor de fundo = lightblue          = #add8e6
+ *   Cor de link #hover = lightcyan    = #e0ffff
  *   
  *   [ ANTIGOS ]
  *   Cor de fundo (background color)   = #99d9ea
@@ -25,10 +26,11 @@
 @charset "utf-8";
 
 body {
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;
+    font-family: Arial, Helvetica, Sans-serif;
     background-color: white;
     margin: 20px;
     /* width: 640px; */
+    font-size: 16pt;
 }
 
 .danger {
@@ -59,11 +61,11 @@ p {
     color: black;
     margin: 16px;
     text-align: justify;
-    font-size: 14pt;
+    /* font-size: 16pt; */
 }
 
 h1, h2, h3 {
-    font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
+    font-family: "Berlin Sans FB Demi", Arial, Helvetica, Sans-serif;
     color: #006000;
     font-weight: bold;
     margin: 8px;
@@ -86,9 +88,6 @@ pre, code {
     background-color: lightgray;
     color: black;
 }
-
-/*
-*/
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Tabelas de dados
@@ -125,6 +124,14 @@ form {
     margin: 16px;
 }
 
+/* Botões e texto de exemplo */
+/* Visto que ainda há pouco suporte, pode ser necessário mudar isto */
+/* A alternativa é pseudo-seletor `:placeholder-shown`
+input[type='input']::placeholder {
+    font-size: 16pt;
+}
+/**/
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Menu e ligações de navegação
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -133,14 +140,19 @@ form {
     width: 100%;
 }
 
+/* Formatação das âncoras */
 a.menuItem {
     /* Retirar sublinhado e cor dos links */
     text-decoration: none;
     color: inherit;
 }
 
+a.menuItem:hover {
+    background-color: lightcyan;
+}
+
 .menuItem {
-    /*font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;*/
+    /*font-family: Arial, Helvetica, Sans-serif;*/
     background-color: lightblue;
     display: block;
     border: solid 2px #e6e6e6;
@@ -160,7 +172,7 @@ a.menuItem {
 }
 
 .menuItem h2 {
-    font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
+    font-family: "Berlin Sans FB Demi", Arial, Helvetica, Sans-serif;
     font-size: 32pt;
     font-weight: bold;
     margin: 8px;
@@ -171,7 +183,7 @@ a.menuItem {
 .menuItem p {
     margin: 8px;
     /*color: #e6e6e6;*/
-    font-size: 16pt;
+    /* font-size: 16pt; */
     color: #006000;
     padding: 16px;
 }
