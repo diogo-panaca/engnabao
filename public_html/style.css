@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Lista de valores (value list)
  *
- *   Cor dos títulos (header color)    = #008000  
+ *   Cor dos títulos (header color)    = #006000  
  *   Cor do texto (text color)         = #e6e6e6 
  *   Cor de madeira (wood color)(icon) = #ecd7a0
  *   Cor de fundo = lightblue          = #add8e6
@@ -13,9 +13,9 @@
 
 /* TODO
  *
- * Daltónicos
- * Removr fundo do cabeçalho (passo a utilizar CSS para defini-la)
+ * Remover fundo do cabeçalho (passo a utilizar CSS para defini-la)
  * Terminar a página do tutorial
+ * Design responsive
  * */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -36,40 +36,49 @@ body {
     color: darkred;
 }
 
+/* Cabeçalho do site (letras grandes, Eng.Nabao) */
+#banner {
+    background-color: lightblue;
+    color: #006000;
+    /*
+    position: fixed;
+    top: 0px;
+    */
+    width: 100%;
+}
+
+#banner a {
+    text-decoration: none;
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Textos
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 p {
     color: black;
-    margin 16px;
+    margin: 16px;
     text-align: justify;
     font-size: 14pt;
 }
 
 h1, h2, h3 {
     font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
-    color: #008000;
+    color: #006000;
+    font-weight: bold;
+    margin: 8px;
 }
 
 h1 {
     font-size: 40pt;
-    font-weight: bold;
-    margin: 8px;
-    padding: 16px;
+    /* margin: 8px; */
+    /* padding: 16px; */
 }
 
 h2 {
     font-size: 32pt;
-    font-weight: bold;
-    margin: 8px;
-    padding: 16px;
-}
-
-/* Cabeçalho do site (letras grandes, Eng.Nabao) */
-#banner {
-    background-color: lightblue
-    ;
-    color: #008000;
+    /* margin: 8px; */
+    /* padding: 16px; */
 }
 
 /* Exemplos de código */
@@ -79,9 +88,6 @@ pre, code {
 }
 
 /*
-.menu {
-    align: center;
-}
 */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -97,7 +103,7 @@ table {
 
 th {
     background-color: lightblue;
-    color: #008000;
+    color: #006000;
     text-align: left;
 }
 
@@ -123,6 +129,10 @@ form {
  * Menu e ligações de navegação
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+.menu {
+    width: 100%;
+}
+
 a.menuItem {
     /* Retirar sublinhado e cor dos links */
     text-decoration: none;
@@ -131,35 +141,45 @@ a.menuItem {
 
 .menuItem {
     /*font-family: "Trebuchet MS", Verdana, Helvetica, Sans-serif;*/
-    background-color: skyblue;
+    background-color: lightblue;
     display: block;
     border: solid 2px #e6e6e6;
     border-radius: 16px;
     margin: 20px;
-    width: 100%;
+    /* width: 100%; */
 }
 
-.menuItem td h2 {
+.menuItem > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menuItem div div {
+    display: inline-block;
+}
+
+.menuItem h2 {
     font-family: "Berlin Sans FB Demi", "Trebuchet MS", Verdana, Helvetica, Sans-serif;
-    /*display: inline-block;*/
     font-size: 32pt;
     font-weight: bold;
     margin: 8px;
-    color: #008000;
-    /*padding: 16px;*/
+    color: #006000;
+    padding: 16px;
 }
 
-.menuItem td p {
-    /*display: inline-block;*/
+.menuItem p {
     margin: 8px;
     /*color: #e6e6e6;*/
     font-size: 16pt;
-    color: #008000;
+    color: #006000;
+    padding: 16px;
 }
 
-.menuItem th img {
+.menuItem img {
     margin: 8px;
     /*display: inline-block;*/
     width: 64px;
     height: 64px;
+    padding: 16px;
 }
