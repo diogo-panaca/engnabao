@@ -35,10 +35,11 @@ function pedirApresentarDadosJson() {
             // console.log(objResposta);
             if(!objResposta.sucesso) {
 
-				console.err(objResposta.erro);
-				if(objResposta.erro_stmt) {
-					console.err(objResposta.erro_stmt);
-				}
+                console.err(objResposta.erro);
+                if(objResposta.erro_stmt) {
+                    console.err('SQL statement error:');
+                    console.err(objResposta.erro_stmt);
+                }
                 return;
             }
 
@@ -46,10 +47,10 @@ function pedirApresentarDadosJson() {
             var tabResultados = document.getElementById('reg-resultados');
 
             // Remover resultados anteriores
-			// FIXME: Pode não ser a melhor solução
-			tabResultados.innerHTML = '';
+            // FIXME: Pode não ser a melhor solução
+            tabResultados.innerHTML = '';
 
-			// Preencher tabela
+            // Preencher tabela
             for(var reg of objResposta.registos) {
                 var node = document.createElement('tr');
                 node.innerHTML =
