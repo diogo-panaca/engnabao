@@ -115,3 +115,4 @@ ON DUPLICATE KEY UPDATE
     designacao = VALUES(designacao)
 ;
 
+COMMIT;

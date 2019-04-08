@@ -84,6 +84,11 @@ h2 {
 }
 
 /* Exemplos de código */
+pre {
+    margin: 8px;
+    padding: 16px;
+}
+
 pre, code {
     background-color: lightgray;
     color: black;

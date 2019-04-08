@@ -53,29 +53,38 @@
   <p>Exemplo de um elemento vazio:
   <p><code>&lt;img&gt;</code></p>
 
+  <p> Pode-se aninhar elementos, ou seja, incluir elementos no conteúdo de outros . Por exemplo:</p>
+  <img src='images/el_html_aninhados.png' />
+  <p> No mesmo exemplo, também é comum dizer que o elemento <code>&lt;h1&gt;</code> está dentro do elemento
+  <code>&lt;body&gt;</code> outro; ou que o elemento exterior envolve / rodeia o elemento interior.</p>
+
   <h1>Estrutura de um documento HTML5</h1>
   
+  <p>
+  Este é um dos exemplos de documentos HTML5 mais pequenos. Não possui conteúdo, apenas o "esqueleto":
+  </p>
+
   <pre>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt; &lt;/head&gt;
-  &lt;body&gt; &lt;/body&gt;
-&lt;/html&gt;
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+      &lt;head&gt; &lt;/head&gt;
+      &lt;body&gt; &lt;/body&gt;
+    &lt;/html&gt;
   </pre>
 
   <ol>
     <li>
-      O elemento <code>DOCTYPE</code> indica a variante de HTML utilizada. Desta forma distingue-se
-      de outros formatos, como XML<!-- (utilizado para descrever dados)-->.
+      O elemento <code>DOCTYPE</code> indica a variante de HTML utilizada &horbar; neste caso a indicação 
+      "html" refere-se a HTML5.  Desta forma distingue-se de outros formatos, como XML.
     </li>
     <li>
-      O elemento <code>html</code> possui o conteúdo do documento.
+      O elemento <code>html</code> é o elemento raiz, cujo conteúdo são todos os outros elementos.
     <li>
       O elemento <code>head</code> é o cabeçalho do documento HTML. Possui informação sobre o próprio
-      documento ou da página, como o título no separador.
+      documento ou da página, como o título da página no separador do navegador.
     </li>
     <li>
-      A marca <code>body</code> é o corpo do documento HTML. A mesma representa o conteúdo e 
+      O elemento <code>body</code> é o corpo do documento HTML. Representa o conteúdo e 
       a estrutura da página web - texto, imagens, tabelas, etc.
     </li>
   </ol>
