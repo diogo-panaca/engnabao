@@ -125,12 +125,16 @@ form {
 }
 
 /* Botões e texto de exemplo */
-/* Visto que ainda há pouco suporte, pode ser necessário mudar isto */
-/* A alternativa é pseudo-seletor `:placeholder-shown`
+/* Visto que não é standard, pode ser necessário mudar isto */
+/* A alternativa é pseudo-classe `:placeholder-shown`*/
+/*
 input[type='input']::placeholder {
     font-size: 16pt;
 }
-/**/
+*/
+input, button {
+    font-size: 16pt;
+}
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Menu e ligações de navegação
