@@ -57,10 +57,15 @@ body {
  * Textos
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+p, li, h1, h2, h3, pre, img {
+    margin: 16px;
+}
+
 p {
     color: black;
-    margin: 16px;
     text-align: justify;
+    /* Evitar par. demasiado largo, para facilitar leitura */
+    max-width: 45em;
     /* font-size: 16pt; */
 }
 
@@ -68,24 +73,23 @@ h1, h2, h3 {
     font-family: "Berlin Sans FB Demi", Arial, Helvetica, Sans-serif;
     color: #006000;
     font-weight: bold;
-    margin: 8px;
+    margin-top: 48px;
 }
 
 h1 {
-    font-size: 40pt;
+    font-size: 2.5em;
     /* margin: 8px; */
     /* padding: 16px; */
 }
 
 h2 {
-    font-size: 32pt;
+    font-size: 2em;
     /* margin: 8px; */
     /* padding: 16px; */
 }
 
 /* Exemplos de código */
 pre {
-    margin: 8px;
     padding: 16px;
 }
 
@@ -149,13 +153,14 @@ input, button {
     width: 100%;
 }
 
-/* Formatação das âncoras */
+/* Formatação das liagações (âncoras) */
 a.menuItem {
     /* Retirar sublinhado e cor dos links */
     text-decoration: none;
     color: inherit;
 }
 
+/* Formatação quando rato está sobre ligação */
 a.menuItem:hover {
     background-color: lightcyan;
 }
