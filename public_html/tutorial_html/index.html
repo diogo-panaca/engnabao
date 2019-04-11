@@ -5,6 +5,7 @@
 
   <title>Eng.º Nabão</title>
   <meta charset='UTF-8' />
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1" />-->
   <link rel='stylesheet' type='text/css' href='../style.css' /> 
   <link rel='icon' type='image/png' href='../images/tinyicon.png' />
   <!--<script src='.js' </script>-->
@@ -45,13 +46,25 @@
      Num documento HTML, descreve-se esta estrutura com marcas (é por isso que se 
      chama uma lingugem de demarcação - <em>HyperText Markup Language</em>).
   </p>
-  <img src='images/marcas_html.png' />
+
   <p>Exemplo de um elemento com conteúdo:</p>
   <p><code>&lt;p&gt;Lorem ipsum dolor sit amet&lt;/p&gt;</code></p>
   <p>Exemplo de um elemento sem conteúdo (mas que podiar ter):</p>
   <p><code>&lt;p&gt; &lt;/p&gt;</code></p>
-  <p>Exemplo de um elemento vazio:
-  <p><code>&lt;img/&gt;</code></p>
+
+  <p> Elementos vazios são aqueles que não podem ter conteúdo. São constituídos
+  por uma única marca, que se fecha a si própria. </p>
+  <p> Exemplo de um elemento vazio:</p>
+  <p><code>&lt;img/&gt;</code> ou então <code>&lt;img&gt;</code></p>
+
+  <img src='images/marcas_html.png' />
+
+  <!-- REVER -->
+  <!--<p>
+    É melhor com ou sem barra? Cada um tem a sua opinião. A sintaxe com barra não é 
+    válida em HTML4. Mas eu prefiro com a barra, para mostrar claramente que se trata
+    de um elemento vazio... e em projetos novos, prefiro HTML5. &#x263A
+  </p>-->
 
   <h2>Aninhamento de elementos</h2>
   <p> Pode-se aninhar elementos, ou seja, incluir elementos no conteúdo de outros. Por exemplo:</p>
@@ -68,11 +81,13 @@
   </p>
 
   <pre>
-    &lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-      &lt;head&gt; &lt;/head&gt;
-      &lt;body&gt; &lt;/body&gt;
-    &lt;/html&gt;
+    <code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt; &lt;/head&gt;
+  &lt;body&gt; &lt;/body&gt;
+&lt;/html&gt;
+    </code>
   </pre>
 
   <ol>

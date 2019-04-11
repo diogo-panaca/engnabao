@@ -14,9 +14,11 @@
 
 /* TODO
  *
- * Remover fundo do cabeçalho (passo a utilizar CSS para defini-la)
- * Terminar a página do tutorial
+ * Terminar a página do tutorial (dividi-la em 2 ou 3 pág)
  * Design responsive
+ *    * página principal
+ *    * tutorial html
+ *    * demo atletas
  * */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -43,7 +45,7 @@ body {
     background-color: lightblue;
     color: #006000;
     /*
-    position: fixed;
+    position: sticky;
     top: 0px;
     */
     width: 100%;
@@ -61,7 +63,7 @@ p, li, h1, h2, h3, pre, img {
     margin: 16px;
 }
 
-p {
+p, li {
     color: black;
     text-align: justify;
     /* Evitar par. demasiado largo, para facilitar leitura */
@@ -91,12 +93,29 @@ h2 {
 /* Exemplos de código */
 pre {
     padding: 16px;
+    border-left: 12px solid gray ;
+    max-width: 50em;
+    overflow-x: scroll;
 }
 
 pre, code {
     background-color: lightgray;
     color: black;
 }
+
+/*
+/* Telemóveis reduzem texto <pre> em modo retrato ?!?!?*/
+@media only screen and (orientation: portrait) {
+    pre {
+        font-size: 2em;
+    }
+
+    body > img {
+        max-width: 100%;
+    }
+}
+/* */
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Tabelas de dados
