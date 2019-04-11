@@ -31,9 +31,8 @@
   internacionais. </p>
   
   <p> A página contém um formulário em que se pode escolher os filtros a
-  utilizar. Esta é uma versão inicial em que é obrigatório escolher um
-  e apenas um atleta. Para este efeito, marca-se o botão de rádio 
-  correspondente.</p>
+  utilizar. Pode-se escolher um ou mais atletas, louvor (medalha), e
+  um período de tempo.</p>
 
   <p> A página foi desenvolvida com tecnologias HTML5 e faz chamadas AJAX,
   em que envia dados relevantes em formato JSON para o servidor. Lá, os dados
@@ -56,19 +55,19 @@
 
       <div>
         <label>
-          <input checked type='radio' name='atleta' id='in_nome_francis' value='Francis' />
+          <input checked type='checkbox' name='atleta[]' id='in_nome_francis' value='Francis' />
           Francis
         </label>
       </div>
       <div>
         <label>
-          <input type='radio' name='atleta' id='in_nome_nelson' value='Nélson' />
+          <input checked type='checkbox' name='atleta[]' id='in_nome_nelson' value='Nélson' />
           Nélson
         </label>
       </div>
       <div>
         <label>
-          <input type='radio' name='atleta' id='in_nome_telma' value='Telma' />
+          <input checked type='checkbox' name='atleta[]' id='in_nome_telma' value='Telma' />
           Telma
         </label>
       </div>
@@ -88,6 +87,28 @@
     </div>
 
     <br />
+
+    <div>
+      Louvor: <br />
+      <div>
+        <label>
+          <input checked type='checkbox' name='louvor[]' id='in_ouro' value='Ouro' />
+          Ouro
+        </label>
+      </div>
+      <div>
+        <label>
+          <input checked type='checkbox' name='louvor[]' id='in_prata' value='Prata' />
+          Prata
+        </label>
+      </div>
+      <div>
+        <label>
+          <input checked type='checkbox' name='louvor[]' id='in_bronze' value='Bronze' />
+          Bronze
+        </label>
+      </div>
+    </div>
 
     <button onclick='pedirApresentarDadosJson()'>OK</button>
   </form>

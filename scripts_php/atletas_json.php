@@ -1,6 +1,7 @@
 <?php
-
+declare(strict_types=1);
 include 'prepend.php';
+require_once 'DynamicQuery.php';
 
 # Fç auxiliar para garantir strings seguras
 function parseInput($dbconn, $dados) {
@@ -8,6 +9,13 @@ function parseInput($dbconn, $dados) {
     $dados = htmlspecialchars($dados);
     $dados = mysqli_real_escape_string($dbconn, $dados);
     return $dados;
+}
+
+function parseInputArray($dbconn, $arr) {
+    foreach($arr as $k => $v) {
+       $arr[$k] = parseInput($dbconn, $v);
+    }
+    return $arr;
 }
 
 # Se a condição for verdadeira, continua execução normalmente
@@ -42,12 +50,12 @@ $dados_recebidos = json_decode($_POST['strJson'], TRUE);
 
 if(!array_key_exists('atleta', $dados_recebidos)
     # || !array_key_exists('competicao', $dados_recebidos)
-    # || !array_key_exists('louvor', $dados_recebidos)
+    || !array_key_exists('louvor', $dados_recebidos)
     || !array_key_exists('ano_min', $dados_recebidos)
     || !array_key_exists('ano_max', $dados_recebidos)
 )
 {
-    $dados_retorno['erro'] = 'Argumentos insuficientes. Devem ser os seguintes {atleta,ano_min,ano_max}.';
+    $dados_retorno['erro'] = 'Argumentos insuficientes. Devem ser os seguintes {atleta,louvor,ano_min,ano_max}.';
     die(json_encode($dados_retorno));
 }
 
@@ -72,21 +80,23 @@ if(!$dbconn) {
 $aux = mysqli_select_db($dbconn, 'id9004398_test');
 imporCondicao($dbconn, $dados_retorno, $aux !== FALSE);
 
+
 # Verificar integridade dos argumentos recebidos do cliente
 
-$filtro_atleta = parseInput($dbconn, $dados_recebidos['atleta']);
+$filtro_atleta = parseInputArray($dbconn, $dados_recebidos['atleta']);
+$filtro_louvor = parseInputArray($dbconn, $dados_recebidos['louvor']);
 # $filtro_competicao = parseInput($dbconn, $dados_recebidos['competicao']);
-# $filtro_louvor = parseInput($dbconn, $dados_recebidos['louvor']);
 $filtro_ano_min = (int) $dados_recebidos['ano_min'];
 $filtro_ano_max = (int) $dados_recebidos['ano_max'];
 
 
 # Criar query parametrizada
+
 $path = DIR_SCRIPTS_PHP . 'query_atletas_json.sql';
 $sqlstr = file_get_contents($path);
 # 
-# FIXME: Nao se pode usar a fç auxiliar porque 
-#        perde-se o erro "file not found (atletas_json.sql)"
+# Nao se pode usar a fç auxiliar porque perde-se o erro 
+# "file not found (atletas_json.sql)"
 # importCondicao($dbconn, $dados_retorno, $sqlstr !== FALSE);
 if($sqlstr === FALSE) {
     $dados_retorno['erro'] = "Ficheiro SQL nao foi encontrado!";
@@ -94,12 +104,21 @@ if($sqlstr === FALSE) {
     die(json_encode($dados_retorno));
 }
 
-$dbstmt = mysqli_prepare($dbconn, $sqlstr);
-imporCondicao($dbconn, $dados_retorno, $dbstmt !== FALSE);
+$dynamic_query = new DynamicQuery($sqlstr);
 
-$aux = mysqli_stmt_bind_param($dbstmt, 'sii', 
-    $filtro_atleta, $filtro_ano_min, $filtro_ano_max);
-imporCondicao($dbconn, $dados_retorno, $aux, $dbstmt);
+
+# Vincular os parametros à query
+
+$dynamic_query->regArrayParams($filtro_atleta, 's');
+$dynamic_query->regParam($filtro_ano_min, 'i');
+$dynamic_query->regParam($filtro_ano_max, 'i');
+$dynamic_query->regArrayParams($filtro_louvor, 's');
+
+$dbstmt = $dynamic_query->bindMysqli($dbconn);
+imporCondicao($dbconn, $dados_retorno, !is_null($dbstmt));
+$aux = $dynamic_query->error('stmt_bind');
+imporCondicao($dbconn, $dados_retorno, $aux, /**/$dbstmt);
+
 
 # Exectuar query
 
@@ -108,6 +127,7 @@ imporCondicao($dbconn, $dados_retorno, $aux, $dbstmt);
 
 $dbresult = mysqli_stmt_get_result($dbstmt);
 imporCondicao($dbconn, $dados_retorno, $dbresult !== FALSE, $dbstmt);
+
 
 # Tratar registos obtidos
 
@@ -125,5 +145,10 @@ $dados_retorno['sucesso'] = TRUE;
 
 echo json_encode($dados_retorno);
 
-?>
+# não fechar com "? >" . De acordo com o manual PHP:
+# «
+#   Se o ficheiro só contém código PHP, é preferível omitir marca de fecho
+# no fim do ficheiro. Desta forma previne-se acrescentar acidentalmente
+# espaço branco ou linhas depois desta marca de fecho.
+# »
 
