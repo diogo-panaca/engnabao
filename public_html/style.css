@@ -5,7 +5,7 @@
  *   Cor do texto (text color)         = #e6e6e6 
  *   Cor de madeira (wood color)(icon) = #ecd7a0
  *   Cor de fundo = lightblue          = #add8e6
- *   Cor de link #hover = lightcyan    = #e0ffff
+ *   Cor de link :hover = lightcyan    = #e0ffff
  *   
  *   [ ANTIGOS ]
  *   Cor de fundo (background color)   = #99d9ea
@@ -82,7 +82,8 @@ h1, h2, h3 {
 h1 {
     font-size: 2.5em;
     /* margin: 8px; */
-    /* padding: 16px; */
+    border-top: 1px solid #006000;
+    padding-top: 12px;
 }
 
 h2 {

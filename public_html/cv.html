@@ -18,7 +18,8 @@
     <a>
       <div>
         <img src='images/bigicon.png' alt='Nora hidráulica do Mouchão, em Tomar' />
-        <img src='images/banner.png' alt='Eng.º Nabão, em letras verde-escuro garrafais' />
+        <img src='images/banner.png'
+          alt='Eng.º Nabão, em letras verde-escuro garrafais' />
       </div>
     </a>
   </header>
@@ -26,36 +27,148 @@
   <br />
 
   <!--<section>-->
-  <h1>Experiência Profissional</h1>
+  <h1>Experiência</h1>
   <button onclick='mudarVisibilidadeCv(event, "exp_profissional")'>Esconder</button>
   <div id='exp_profissional'>
     <h2>SoftINSA, Tomar</h2>
-    <h3>Manutenção da aplicação Open SGC</h3>
+    <!--<h3>Manutenção da aplicação Open SGC</h3>-->
     <p>
       Experiência profissional de três anos numa equipa de manutenção e
-      desenvolvimento aplicaciona, entre julho 2015 e setembro de 2018.
+      desenvolvimento aplicacional, entre julho 2015 e setembro de 2018.
     </p>
     <ul>
       <li> 
-        Relatórios &horbar; SQL, shell scripting &horbar; criação e manutenção
-        de relatórios com informação diversa do sistema.
+        Relatórios (PL/SQL, shell scripting) &horbar; criação e 
+        manutenção de relatórios com informação diversa do sistema.
       </li>
       <li>
-        Manutenção do software &horbar; C++ e Powerbuilder
+        Manutenção do software (C++, Oracle SQL, Powerbuilder).
       </li>
       <li>
-        Testes ao software 
+        Testes ao software.
       </li>
+    </ul>
+    <h2>Voluntário de tradução MDN</h2>
+    <p>
+      Tradução de artigos sobre desenvolvimento Web no site da
+      Mozilla Developer Network, desde março de 2019.
+    </p>
+    <p>
+      <a href='https://developer.mozilla.org/pt-PT/profiles/diogo-panaca'>
+        https://developer.mozilla.org/pt-PT/profiles/diogo-panaca
+      </a>
+    </p>
   </div>
 
   <h1>Formação</h1>
   <button onclick='mudarVisibilidadeCv(event, "formacao")'>Esconder</button>
   <div id='formacao'>
     <h2>Licenciatura</h2>
-    <p>Licenciatura em Engenharia Informática e de Computadores, pelo Instituto Superior Técnico</p>
+    <p>
+      Licenciatura em Engenharia Informática e de Computadores, pelo Instituto Superior
+      Técnico
+    </p>
     <!--<h3>Manutenção da aplicação Open SGC</h3>-->
+    <h2>Comunicação</h2>
+    <p>
+      Curso de comunicação interpessoal e assertiva, realizado em regime pós-laboral
+      durante desempenho da atividade profissional na SoftINSA
+    </p>      
+
   </div>
 
+  <h1>Idiomas</h1>
+  <button onclick='mudarVisibilidadeCv(event, "idiomas")'>Esconder</button>
+  <div id='idiomas'>
+    <p><strong>Língua materna:</strong> Português</p>
+    <!-- Tabela na horizontal 
+    <table>
+      <thead>
+        <tr>
+          <th colspan='5'>Inglês</th>
+        </tr>
+        <tr>
+          <th>Compreensão oral</th>
+          <th>Leitura</th>
+          <th>Interação oral</th>
+          <th>Produção oral</th>
+          <th>Escrita</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>B2</td>
+          <td>B2</td>
+          <td>B1</td>
+          <td>B2</td>
+          <td>B1</td>
+        </tr>
+      </tbody>
+    </table>
+    -->
+    
+    <p>
+      Bom domínio do Inglês. Em particular, segundo <cite>Quadro Europeu Comum de
+      Referência para as Línguas</cite>:
+    </p>
+    <!-- Tabela na vertical-->
+    <table>
+        <tr>
+          <th rowspan='5'>Inglês</th>
+          <th>Compreensão oral</th>
+          <td>B2</td>
+        </tr>
+        <tr>
+          <th>Leitura</th>
+          <td>B2</td>
+        </tr>
+        <tr>
+          <th>Interação oral</th>
+          <td>B1</td>
+        </tr>
+        <tr>
+          <th>Produção oral</th>
+          <td>B2</td>
+        </tr>
+        <tr>
+          <th>Escrita</th>
+          <td>B1</td>
+        </tr>
+    </table>
+  </div>
+
+  <h1>Competências</h1>
+  <button onclick='mudarVisibilidadeCv(event, "competencias")'>Esconder</button>
+  <div id='competencias'>
+    <h2>Desenvolvimento Web (está à vista)</h2>
+    <ul>
+      <li>HTML5 (JavaScript, CSS, HTML)</li>
+      <li>AJAX</li>
+      <li>PHP</li>
+      <li>Noções básicas de UX/UI (experiência/interação do utilizador)</li>
+      <li>Noções básicas de jQuery e Vue.js</li>
+    </ul>
+
+    <h2>Sistemas de informação</h2>
+    <ul>
+      <li>Shell scripting (bash)</li>
+      <li>SQL (Oracle, MariaDB, <em>standard</em>)</li>
+      <!--<li>Conhecimentos de Unix</li>-->
+      <li>Experiência pessoal com instalação e configuração de Linux</li>
+    </ul>
+
+    <h2>Engenharia de Software</h2>
+    <ul>
+      <li>Conhecimento de padrões de desenho</li>
+      <li>Noções básicas de metodologia Agile</li>
+      <li>Noções de metodologia <cite>Test first</cite></li>
+      <li>
+        Domínio de diversas linguagens:
+        C, C++, Python, Java, JavaScript, PHP
+      </li>
+      <!--<li>Conhecimento de JUnit</li>-->
+    </ul>
+  </div>
 
 </body>
 
