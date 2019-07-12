@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang='pt'>
+
+<head>
+
+  <title>Eng.º Nabão</title>
+  <meta charset='UTF-8' />
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1" />-->
+  <link rel='stylesheet' type='text/css' href='style.css' /> 
+  <link rel='stylesheet' type='text/css' href='demo_adapt.css' />
+  <link rel='icon' type='image/png' href='images/tinyicon.png' />
+  <script src='demo_adapt.js'> </script>
+
+</head>
+
+<body>
+
+  <header id='banner'>
+    <a>
+      <div>
+        <img src='images/bigicon.png' width='196' height='196'
+          alt='Nora hidráulica do Mouchão, em Tomar' />
+        <img src='images/banner.png' width='600' height='196'
+          alt='Eng.º Nabão, em letras verde-escuro garrafais' />
+      </div>
+    </a>
+  </header>
+
+  <br />
+
+  <button id='botaoDisposicao' onclick='changeLayout(event)'>Mostrar mosaicos</button>
+
+  <nav class='carouselMenu menu'>
+
+    <a class='activeMenuItem menuItem' href='tutorial_html'>
+      <div>
+        <img width='64' height='64'
+          src='images/frontend.png' alt='front-end' />
+        <div class='menuItemDescription'>
+          <h2>Introdução HTML</h2>
+          <p>Breve introdução ao HTML5 e CSS</p>
+        </div>
+      </div>
+    </a>
+
+    <a class='menuItem' href='demo_atletas.html'>
+      <div>
+        <img width='64' height='64'
+          src='images/backend.png' alt='back-end' />
+        <div class='menuItemDescription'>
+          <h2>Aplicação web</h2>
+          <p>
+            Demonstração de uma aplicação cliente-servidor utilizando HTML,
+            AJAX, PHP e uma base de dados
+          </p>
+        </div>
+      </div>
+    </a>
+
+    <a class='menuItem' href='demo_adapt.html'>
+      <div>
+        <img width='64' height='64'
+           src='images/menu.png' alt='menu' />
+        <div class='menuItemDescription'>
+          <h2>Menu progressivo</h2>
+          <p>
+            Versão alternativa desta página, em que se pode escolher a
+            forma como são apresentadas as opções deste menu.
+          </p>
+        </div>
+      </div>
+    </a>
+
+    <a class='menuItem' href='https://github.com/diogo-panaca/engnabao'>
+      <div>
+        <img width='64' height='64'
+          src='images/github.png' alt='github'/>
+        <div class='menuItemDescription'>
+          <h2>Código fonte</h2>
+          <p>Ver o repositório do código deste site no Github</p>
+        </div>
+      </div>
+    </a>
+
+    <a class='menuItem' href='cv.html'>
+      <div>
+        <img width='64' height='64'
+          src='images/curriculum.png' alt='CV' />
+        <div class='menuItemDescription'>
+          <h2>Currículo</h2>
+          <p>Ver o CV do criador deste site</p>
+        </div>
+      </div>
+    </a>
+
+    <div class='carouselMenuButton'>
+      <button onclick='swipeMenu(event, -1)'> &#9666; </button>
+      <button onclick='swipeMenu(event,  1)'> &#9656; </button>
+    </div>
+  </nav>
+
+</body>
+
+</html>

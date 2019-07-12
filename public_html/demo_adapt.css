@@ -1,0 +1,67 @@
+/* Mosaicos (opções em grelha)*/
+.tileMenu {
+    flex: 1 1 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 50em;
+}
+
+.tileMenu .menuItem > div {
+    justify-content: center;
+    flex-direction: column;
+    width: 15em;
+    height: 10em;
+}  
+
+.tileMenu .menuItem p {
+    display: none;
+}
+
+.tileMenu .menuItem h2 {
+    text-align: center;
+}
+
+/* Carrossel (ciclo de opções)*/
+.carouselMenu {
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 30em;
+}
+
+.carouselMenu .menuItem {
+    display: none;
+}
+
+.carouselMenu .menuItem.activeMenuItem {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 10em;
+}
+
+.tileMenu .menuItem p, .tileMenu .menuItem h2 {
+    text-align: center;
+}
+
+/* Mostrar botões apenas neste tipo de menu */
+.menu.carouselMenu .carouselMenuButton {
+    justify-content: center;
+    display: flex;
+    height: 3em;
+}
+
+.menu .carouselMenuButton {
+    display: none;
+}
+
+.carouselMenuButton button {
+    cursor: pointer;
+    width: 35%;
+    background-color: #add8e6;
+    color: #006000;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+
