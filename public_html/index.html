@@ -8,7 +8,6 @@
   <!--<meta name="viewport" content="width=device-width, initial-scale=1" />-->
   <link rel='stylesheet' type='text/css' href='style.css' /> 
   <link rel='icon' type='image/png' href='images/tinyicon.png' />
-  <!--<script src='.js' </script>-->
 
 </head>
 
@@ -35,7 +34,7 @@
     <a class='menuItem' href='tutorial_html/introducao.html'>
       <div>
         <img src='images/frontend.png' alt='front-end' />
-        <div>
+        <div class=menuItemDescription>
           <h2>Front-end / Interface</h2>
           <p>Desenvolvimento de páginas internet com HTML5</p>
         </div>
@@ -45,7 +44,7 @@
     <a class='menuItem'>
       <div>
         <img src='images/backend.png' alt='back-end' />
-        <div>
+        <div class=menuItemDescription>
           <h2>Back-end / Servidor</h2>
           <p>Desenvolvimento do servidor com PHP e SQL</p>
         </div>
@@ -54,7 +53,7 @@
     <a class='menuItem'>
       <div>
         <img src='images/linux.png' alt='linux' />
-        <div>
+        <div class=menuItemDescription>
           <h2>Linux</h2> 
           <p>Instalação e utilização de Linux</p>
         </div>
@@ -71,8 +70,9 @@
 
     <a class='menuItem' href='tutorial_html'>
       <div>
-        <img src='images/frontend.png' alt='front-end' />
-        <div>
+        <img width='64' height='64'
+          src='images/frontend.png' alt='front-end' />
+        <div class=menuItemDescription>
           <h2>Introdução HTML</h2>
           <p>Breve introdução ao HTML5 e CSS</p>
         </div>
@@ -81,12 +81,27 @@
 
     <a class='menuItem' href='demo_atletas.html'>
       <div>
-        <img src='images/backend.png' alt='back-end' />
-        <div>
+        <img width='64' height='64'
+          src='images/backend.png' alt='back-end' />
+        <div class=menuItemDescription>
           <h2>Aplicação web</h2>
           <p>
             Demonstração de uma aplicação cliente-servidor utilizando HTML,
             AJAX, PHP e uma base de dados
+          </p>
+        </div>
+      </div>
+    </a>
+
+    <a class='menuItem' href='demo_adapt.html'>
+      <div>
+        <img width='64' height='64'
+           src='images/menu.png' alt='menu' />
+        <div class='menuItemDescription'>
+          <h2>Menu progressivo</h2>
+          <p>
+            Versão alternativa desta página, em que se pode escolher a
+            forma como são apresentadas as opções deste menu.
           </p>
         </div>
       </div>
@@ -100,8 +115,9 @@
 
     <a class='menuItem' href='https://github.com/diogo-panaca/engnabao'>
       <div>
-        <img src='images/github.png' alt='github'/>
-        <div>
+        <img width='64' height='64'
+          src='images/github.png' alt='github'/>
+        <div class=menuItemDescription>
           <h2>Código fonte</h2>
           <p>Ver o repositório do código deste site no Github</p>
         </div>
@@ -110,10 +126,11 @@
 
     <a class='menuItem' href='cv.html'>
       <div>
-        <img src='images/curriculum.png' alt='CV' />
-        <div>
+        <img width='64' height='64'
+          src='images/curriculum.png' alt='CV' />
+        <div class=menuItemDescription>
           <h2>Currículo</h2>
-          <p>Ver ou descarregar o CV do criador deste site</p>
+          <p>Ver o CV do criador deste site</p>
         </div>
       </div>
     </a>

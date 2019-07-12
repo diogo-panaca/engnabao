@@ -4,11 +4,11 @@ include 'prepend.php';
 require_once 'DynamicQuery.php';
 
 # Fç auxiliar para garantir strings seguras
-function parseInput($dbconn, $dados) {
-    $dados = trim($dados);
-    $dados = htmlspecialchars($dados);
-    $dados = mysqli_real_escape_string($dbconn, $dados);
-    return $dados;
+function parseInput($dbconn, $data) {
+    $data = trim($data);
+    $data = htmlspecialchars($data);
+    $data = mysqli_real_escape_string($dbconn, $data);
+    return $data;
 }
 
 function parseInputArray($dbconn, $arr) {
@@ -20,18 +20,18 @@ function parseInputArray($dbconn, $arr) {
 
 # Se a condição for verdadeira, continua execução normalmente
 # Caso contrário, retorna mensagem de erro e termina execução do script
-function imporCondicao($dbconn, $dados, $condicao, $dbstmt = FALSE, $dbresult = FALSE) {
+function enforceCondition($dbconn, $data, $condicao, $dbstmt = FALSE, $dbresult = FALSE) {
     if(!$condicao){
-        $dados['erro'] = mysqli_error($dbconn);
+        $data['error'] = mysqli_error($dbconn);
         if($dbstmt){
-            $dados['erro_stmt'] = mysqli_stmt_error($dbstmt);
+            $data['error_stmt'] = mysqli_stmt_error($dbstmt);
             mysqli_stmt_close($dbstmt);
         }
         if($dbresult) {
             mysqli_free_result($dbresult);
         }
         mysqli_close($dbconn);
-        die(json_encode($dados));
+        die(json_encode($data));
     }
 }
 
@@ -40,54 +40,54 @@ function imporCondicao($dbconn, $dados, $condicao, $dbstmt = FALSE, $dbresult = 
 header('Content-Type: application/json; charset=UTF-8');
 
 # Só há sucesso se chegarmos ao fim deste script
-$dados_retorno['sucesso'] = FALSE;
+$data_to_return['success'] = FALSE;
 
 # Verificar dados recebidos do cliente
 # Todos os campos são obrigatórios
 # Se houver algum em falta, retorna-se erro e termina execução
 
-$dados_recebidos = json_decode($_POST['strJson'], TRUE);
+$data_received = json_decode($_POST['strJson'], TRUE);
 
-if(!array_key_exists('atleta', $dados_recebidos)
-    # || !array_key_exists('competicao', $dados_recebidos)
-    || !array_key_exists('louvor', $dados_recebidos)
-    || !array_key_exists('ano_min', $dados_recebidos)
-    || !array_key_exists('ano_max', $dados_recebidos)
+if(!array_key_exists('atleta', $data_received)
+    # || !array_key_exists('competicao', $data_received)
+    || !array_key_exists('louvor', $data_received)
+    || !array_key_exists('ano_min', $data_received)
+    || !array_key_exists('ano_max', $data_received)
 )
 {
-    $dados_retorno['erro'] = 'Argumentos insuficientes. Devem ser os seguintes {atleta,louvor,ano_min,ano_max}.';
-    die(json_encode($dados_retorno));
+    $data_to_return['error'] = 'Argumentos insuficientes. Devem ser os seguintes {atleta,louvor,ano_min,ano_max}.';
+    die(json_encode($data_to_return));
 }
 
-if(!is_numeric($dados_recebidos['ano_min'])) {
-    $dados_retorno['erro'] = 'Argumento (ano_min) deve ser numérico.';
-    die(json_encode($dados_retorno));
+if(!is_numeric($data_received['ano_min'])) {
+    $data_to_return['error'] = 'Argumento (ano_min) deve ser numérico.';
+    die(json_encode($data_to_return));
 }
 
-if(!is_numeric($dados_recebidos['ano_max'])) {
-    $dados_retorno['erro'] = 'Argumento (ano_max) deve ser numérico.';
-    die(json_encode($dados_retorno));
+if(!is_numeric($data_received['ano_max'])) {
+    $data_to_return['error'] = 'Argumento (ano_max) deve ser numérico.';
+    die(json_encode($data_to_return));
 }
 
 # Ligar à BD
 
 $dbconn = mysqli_connect();
 if(!$dbconn) {
-    $dados_retorno['erro'] = mysqli_connect_error();
-    die(json_encode($dados_retorno));
+    $data_to_return['error'] = mysqli_connect_error();
+    die(json_encode($data_to_return));
 }
 
 $aux = mysqli_select_db($dbconn, 'id9004398_test');
-imporCondicao($dbconn, $dados_retorno, $aux !== FALSE);
+enforceCondition($dbconn, $data_to_return, $aux !== FALSE);
 
 
 # Verificar integridade dos argumentos recebidos do cliente
 
-$filtro_atleta = parseInputArray($dbconn, $dados_recebidos['atleta']);
-$filtro_louvor = parseInputArray($dbconn, $dados_recebidos['louvor']);
-# $filtro_competicao = parseInput($dbconn, $dados_recebidos['competicao']);
-$filtro_ano_min = (int) $dados_recebidos['ano_min'];
-$filtro_ano_max = (int) $dados_recebidos['ano_max'];
+$filtro_atleta = parseInputArray($dbconn, $data_received['atleta']);
+$filtro_louvor = parseInputArray($dbconn, $data_received['louvor']);
+# $filtro_competicao = parseInput($dbconn, $data_received['competicao']);
+$filtro_ano_min = (int) $data_received['ano_min'];
+$filtro_ano_max = (int) $data_received['ano_max'];
 
 
 # Criar query parametrizada
@@ -97,11 +97,11 @@ $sqlstr = file_get_contents($path);
 # 
 # Nao se pode usar a fç auxiliar porque perde-se o erro 
 # "file not found (atletas_json.sql)"
-# importCondicao($dbconn, $dados_retorno, $sqlstr !== FALSE);
+# enforceCondition($dbconn, $data_to_return, $sqlstr !== FALSE);
 if($sqlstr === FALSE) {
-    $dados_retorno['erro'] = "Ficheiro SQL nao foi encontrado!";
+    $data_to_return['error'] = "Ficheiro SQL nao foi encontrado!";
     mysqli_close($dbconn);
-    die(json_encode($dados_retorno));
+    die(json_encode($data_to_return));
 }
 
 $dynamic_query = new DynamicQuery($sqlstr);
@@ -115,35 +115,35 @@ $dynamic_query->regParam($filtro_ano_max, 'i');
 $dynamic_query->regArrayParams($filtro_louvor, 's');
 
 $dbstmt = $dynamic_query->bindMysqli($dbconn);
-imporCondicao($dbconn, $dados_retorno, !is_null($dbstmt));
+enforceCondition($dbconn, $data_to_return, !is_null($dbstmt));
 $aux = $dynamic_query->error('stmt_bind');
-imporCondicao($dbconn, $dados_retorno, $aux, /**/$dbstmt);
+enforceCondition($dbconn, $data_to_return, $aux, /**/$dbstmt);
 
 
 # Exectuar query
 
 $aux = mysqli_stmt_execute($dbstmt);
-imporCondicao($dbconn, $dados_retorno, $aux, $dbstmt);
+enforceCondition($dbconn, $data_to_return, $aux, $dbstmt);
 
 $dbresult = mysqli_stmt_get_result($dbstmt);
-imporCondicao($dbconn, $dados_retorno, $dbresult !== FALSE, $dbstmt);
+enforceCondition($dbconn, $data_to_return, $dbresult !== FALSE, $dbstmt);
 
 
 # Tratar registos obtidos
 
 $i = 0;
-$dados_retorno['registos'] = array();
+$data_to_return['data_rows'] = array();
 foreach($dbresult as $row) {
-    $dados_retorno['registos'][$i++] = $row;
+    $data_to_return['data_rows'][$i++] = $row;
 }
 
 mysqli_free_result($dbresult);
 mysqli_stmt_close($dbstmt);
 mysqli_close($dbconn);
 
-$dados_retorno['sucesso'] = TRUE;
+$data_to_return['success'] = TRUE;
 
-echo json_encode($dados_retorno);
+echo json_encode($data_to_return);
 
 # não fechar com "? >" . De acordo com o manual PHP:
 # «

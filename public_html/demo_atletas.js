@@ -1,7 +1,7 @@
 "use strict";
 
-/* Evitar submissão do formulário, o navegador não sair da página */
-function naoSubmeter(event) {
+/* Evitar submissão do formulário, para o navegador não sair da página */
+function nopHandler(event) {
     event.preventDefault();
 }
 
@@ -9,17 +9,17 @@ function naoSubmeter(event) {
  *
  * Parametro: id - string com o id do formulário
 */
-function extrairValoresFormulario(id) {
+function extractFormValues(id) {
     if(typeof id !== 'string') {
-        throw 'extrairValoresFormulario: Argumento tem que ser string';
+        throw 'extractFormValues: Argumento tem que ser string';
     }
     var elForm = document.getElementById(id);
     if(elForm === null) {
-        throw 'extrairValoresFormulario: elemento com id #' + id +
+        throw 'extractFormValues: elemento com id #' + id +
             'não encontrado';
     }
     if(elForm.tagName !== 'FORM') {
-        throw 'extrairValoresFormulario: elemento com id #' + id +
+        throw 'extractFormValues: elemento com id #' + id +
             'não é um elemento FORM (formulário)';
     }
 
@@ -64,9 +64,9 @@ function extrairValorCheckbox(name) {
  * e retorna dados em formato JSON; depois trata esses dados 
  * e apresenta-os na página HTML onde é invocada.
  */
-function pedirApresentarDadosJson() {
+function requestJsonData() {
 
-    var objJson = extrairValoresFormulario('formFiltros');
+    var objJson = extractFormValues('formFiltros');
 
     if(objJson.ano_min === "") {
         objJson.ano_min = 1896;
@@ -83,14 +83,14 @@ function pedirApresentarDadosJson() {
     xmlhttp.onreadystatechange = function () {
         // console.log(this.responseText);
         if(this.readyState == 4 && this.status == 200) {
-            var objResposta = JSON.parse(this.responseText);
-            // console.log(objResposta);
-            if(!objResposta.sucesso) {
+            var objResponse = JSON.parse(this.responseText);
+            // console.log(objResponse);
+            if(!objResponse.success) {
 
-                console.err(objResposta.erro);
-                if(objResposta.erro_stmt) {
+                console.err(objResponse.error);
+                if(objResponse.error_stmt) {
                     console.err('SQL statement error:');
-                    console.err(objResposta.erro_stmt);
+                    console.err(objResponse.erro_stmt);
                 }
                 return;
             }
@@ -102,14 +102,14 @@ function pedirApresentarDadosJson() {
             tabResultados.innerHTML = '';
 
             // Preencher tabela
-            for(var reg of objResposta.registos) {
+            for(var row of objResponse.data_rows) {
                 var node = document.createElement('tr');
                 node.innerHTML =
-                    '<td>' + reg.atleta + '</td>' +
-                    '<td>' + reg.modalidade + '</td>' +
-                    '<td>' + reg.competicao + '</td>' +
-                    '<td>' + reg.edicao + '</td>' +
-                    '<td>' + reg.louvor + '</td>';
+                    '<td>' + row.atleta + '</td>' +
+                    '<td>' + row.modalidade + '</td>' +
+                    '<td>' + row.competicao + '</td>' +
+                    '<td>' + row.edicao + '</td>' +
+                    '<td>' + row.louvor + '</td>';
 
                 tabResultados.appendChild(node);
             }

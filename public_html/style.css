@@ -7,15 +7,12 @@
  *   Cor de fundo = lightblue          = #add8e6
  *   Cor de link :hover = lightcyan    = #e0ffff
  *   
- *   [ ANTIGOS ]
- *   Cor de fundo (background color)   = #99d9ea
- *   
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /* TODO
  *
- * Terminar a página do tutorial (dividi-la em 2 ou 3 pág)
- * Design responsive
+ * Design responsive - no tlmv, as cruzes das checkbox estão abaixo do sítio esperado
+ *  -- Android (mobile??) font on checkmarks
  * */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -25,11 +22,17 @@
 @charset "utf-8";
 
 body {
-    font-family: Tahoma, Helvetica, Sans-serif;
+    font-family: Tahoma, Arial, Helvetica, Sans-serif;
     background-color: white;
-    margin: 20px;
     /* width: 640px; */
     font-size: 24pt;
+    margin: 0;
+    padding: 0;
+    max-width: 50em;
+}
+
+body > * {
+    margin: 20px;
 }
 
 .danger {
@@ -47,6 +50,8 @@ body {
     top: 0px;
     */
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #banner a {
@@ -65,12 +70,12 @@ p, li {
     color: black;
     text-align: justify;
     /* Evitar par. demasiado largo, para facilitar leitura */
-    max-width: 45em;
+    max-width: 35em;
     /* font-size: 1em; */
 }
 
 h1, h2, h3 {
-    font-family: /*"Berlin Sans FB",*/ Tahoma, Helvetica, Sans-serif;
+    font-family: /*"Berlin Sans FB",*/ Tahoma, Arial, Helvetica, Sans-serif;
     color: #006000;
     font-weight: bold; /*Berlin Sans FB Demi = 600*/
     margin-top: 48px;
@@ -183,6 +188,8 @@ input[type='checkbox'], input[type='radio'] {
 
 .checkmark {
     /*content: '\2717'; /* Uma cruz : NOTA: content só funciona em pseudo-el :after e :before*/
+    /* TODO: Em Android, o tipo de letra fica muito em baixo */
+    font-family: "Droid Sans", sans-serif;
     display: inline-block;
     font-size: 1em;
     border-radius: 4px;
@@ -231,6 +238,8 @@ input[type='checkbox']:not(:checked):after {
 
 .menu {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Formatação das liagações (âncoras) */
@@ -246,7 +255,7 @@ a.menuItem:hover {
 }
 
 .menuItem {
-    /*font-family: Tahoma, Helvetica, Sans-serif;*/
+    /*font-family: Tahoma, Arial, Helvetica, Sans-serif;*/
     background-color: lightblue;
     display: block;
     border: solid 2px #e6e6e6;
@@ -266,7 +275,7 @@ a.menuItem:hover {
 }
 
 .menuItem h2 {
-    font-family: /*"Berlin Sans FB Demi",*/ Tahoma, Helvetica, Sans-serif;
+    font-family: /*"Berlin Sans FB Demi",*/ Tahoma, Arial, Helvetica, Sans-serif;
     /* font-size: 2em; */
     font-weight: bold; /*FB demi.weight = 600*/
     margin: 8px;
